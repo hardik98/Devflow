@@ -10,7 +10,20 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.extends(
+    "next/core-web-vitals",
+    "next/typescript",
+    "standard",
+    "plugin:tailwindcss/recommended",
+    "plugin:prettier/recommended"
+  ),
+  {
+    rules: {
+      "tailwindcss/classnames-order": "warn",
+      "tailwindcss/enforces-negative-arbitrary-values": "error",
+      "tailwindcss/no-arbitrary-value": "off", // Disable if too strict
+    },
+  },
 ];
 
 export default eslintConfig;
