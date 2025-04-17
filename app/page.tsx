@@ -1,7 +1,3 @@
 export default function Home() {
-  return (
-    <h1 className=" text-white text-4xl font-black ">
-      Welcome to the next js !!
-    </h1>
-  );
+  return <h1 className="h1-bold">Welcome to the next js !!</h1>;
 }
