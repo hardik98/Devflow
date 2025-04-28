@@ -23,6 +23,14 @@ const eslintConfig = [
       "tailwindcss/enforces-negative-arbitrary-values": "error",
       "tailwindcss/no-arbitrary-value": "off", // Disable if too strict
     },
+    overrides: [
+      {
+        files: ["*.ts", "*.tsx"],
+        rules: {
+          "no-undef": "off",
+        },
+      },
+    ],
   },
 ];
 
