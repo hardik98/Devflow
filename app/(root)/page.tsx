@@ -5,6 +5,9 @@ import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
+import { NotFoundError, ValidationError } from "@/lib/http-errors";
+import handleError from "@/lib/handlers/error";
+import dbConnect from "@/lib/mongoose";
 
 const questions = [
   {
@@ -52,6 +55,17 @@ interface SearchParams {
 }
 
 const Home = async ({ searchParams }: SearchParams) => {
+  // async function getData() {
+  //   try {
+  //     await dbConnect();
+  //  throw new ValidationError("Invalid data provided");
+  //   } catch (error) {
+  //     return handleError(error);
+  //   }
+  // }
+
+  // const test = await getData();
+  // console.log("test", test);
   const { query = "", filter = "" } = await searchParams;
 
   const filteredQuestions = questions.filter((question) => {
