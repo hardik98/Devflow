@@ -8,6 +8,7 @@ import ROUTES from "@/constants/routes";
 import { NotFoundError, ValidationError } from "@/lib/http-errors";
 import handleError from "@/lib/handlers/error";
 import dbConnect from "@/lib/mongoose";
+import { auth } from "@/auth";
 
 const questions = [
   {
@@ -55,6 +56,8 @@ interface SearchParams {
 }
 
 const Home = async ({ searchParams }: SearchParams) => {
+  const session = await auth();
+  console.log("session", session);
   // async function getData() {
   //   try {
   //     await dbConnect();
