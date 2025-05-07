@@ -1,5 +1,7 @@
 import mongoose, { Mongoose } from "mongoose";
+
 import logger from "./logger";
+import "@/database";
 
 const MONGODB_URI = process.env.MONGODB_URI as string;
 
@@ -25,7 +27,7 @@ if (!cached) {
 
 const dbConnect = async (): Promise<Mongoose> => {
   if (cached.conn) {
-    logger.info("Using cached MongoDB connection");
+    logger.info("Using existing mongoose connection");
     return cached.conn;
   }
 
