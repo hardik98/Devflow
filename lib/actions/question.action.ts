@@ -15,7 +15,6 @@ import {
   IncrementViewsSchema,
   PaginatedSearchParamsSchema,
 } from "../validations";
-import { revalidatePath } from "next/cache";
 import ROUTES from "@/constants/routes";
 
 export async function createQuestion(
@@ -318,7 +317,7 @@ export async function incrementViews(
 
     await question.save();
 
-    revalidatePath(ROUTES.QUESTION(questionId));
+    // revalidatePath(ROUTES.QUESTION(questionId));
 
     return {
       success: true,
