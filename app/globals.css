@@ -3,6 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 /* Define your theme variables */
+
 @theme {
   /* Colors */
   --color-primary-100: #fff1e6;
@@ -508,6 +509,7 @@ body {
   }
 
   /* Markdown utilities */
+
   .markdown {
     max-width: 100%;
   }
