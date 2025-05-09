@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import ROUTES from "@/constants/routes";
+import { toast } from "@/hooks/use-toast";
 import { createQuestion, editQuestion } from "@/lib/actions/question.action";
 import { AskQuestionSchema } from "@/lib/validations";
 
@@ -25,7 +26,6 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { toast } from "sonner";
 
 const Editor = dynamic(() => import("@/components/editor"), {
   ssr: false,
@@ -101,14 +101,17 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
         });
 
         if (result.success) {
-          toast("Success", {
+          toast({
+            title: "Success",
             description: "Question updated successfully",
           });
 
           if (result.data) router.push(ROUTES.QUESTION(result.data._id));
         } else {
-          toast.error(`Error ${result.status}`, {
+          toast({
+            title: `Error ${result.status}`,
             description: result.error?.message || "Something went wrong",
+            variant: "destructive",
           });
         }
 
@@ -118,14 +121,17 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
       const result = await createQuestion(data);
 
       if (result.success) {
-        toast("Success", {
+        toast({
+          title: "Success",
           description: "Question created successfully",
         });
 
         if (result.data) router.push(ROUTES.QUESTION(result.data._id));
       } else {
-        toast.error(`Error ${result.status}`, {
+        toast({
+          title: `Error ${result.status}`,
           description: result.error?.message || "Something went wrong",
+          variant: "destructive",
         });
       }
     });

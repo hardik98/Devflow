@@ -29,7 +29,7 @@ const Metric = ({
   const metricContent = (
     <>
       <Image
-        src={imgUrl?.length ? imgUrl : ""}
+        src={imgUrl}
         width={16}
         height={16}
         alt={alt}

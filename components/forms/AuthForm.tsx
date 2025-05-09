@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import ROUTES from "@/constants/routes";
-import { toast } from "sonner";
+import { toast } from "@/hooks/use-toast";
 
 interface AuthFormProps<T extends FieldValues> {
   schema: ZodType<T>;
@@ -46,11 +46,11 @@ const AuthForm = <T extends FieldValues>({
   });
 
   const handleSubmit: SubmitHandler<T> = async (data) => {
-    console.log("Submitting data:", data);
     const result = (await onSubmit(data)) as ActionResponse;
 
     if (result?.success) {
-      toast.success("", {
+      toast({
+        title: "Success",
         description:
           formType === "SIGN_IN"
             ? "Signed in successfully"
@@ -59,8 +59,10 @@ const AuthForm = <T extends FieldValues>({
 
       router.push(ROUTES.HOME);
     } else {
-      toast.error(`Error ${result?.status}`, {
+      toast({
+        title: `Error ${result?.status}`,
         description: result?.error?.message,
+        variant: "destructive",
       });
     }
   };
